@@ -18,25 +18,7 @@ if __name__ == '__main__':
     val = input('Type y to confirm serial numbers match: ')
     if val != 'y':
         exit("Wrong sensors")
-    
-    print('Sensors init')
-    part_sensor = SDS011('/dev/ttyUSB0')
-    gas_sensor = ADS1115()
-    
-    print('Read single sample')
-    pm25, pm10, tempo = part_sensor.get_data()
-    gas = gas_sensor.get_data() 
-    print(pm25, pm10, gas[0], gas[1], gas[2], gas[3])
-    
-    print('Init plotting')
-    plt.ion()
-    fig, ax = plt.subplots(5,1)
-    # initialize data structures for plots
-    x  = y0 = y1 = y2 = y3 = y4 = y5 = ([] for i in range(6))
-    l0 = l1 = l2 = l3 = l4 = l5 = None
-    
-    n = 0 #iteration counter
-    
+
     # values for sensor NO2 serial number 212890332
     WE_e_NO2 = 300
     AE_e_NO2 = 305
@@ -48,6 +30,29 @@ if __name__ == '__main__':
     AE_e_CO = 258
     sens_CO = 0.252
     n_CO    = -1.5
+    
+    print('Sensors init')
+    part_sensor = SDS011('/dev/ttyUSB0')
+    gas_sensor = ADS1115()
+    
+    print('Read single sample')
+    pm25, pm10, time = part_sensor.get_data()
+    gas = gas_sensor.get_data() 
+    # gas[0] = WE_NO2
+    # gas[1] = AE_NO2
+    # gas[2] = WE_CO
+    # gas[3] = AE_CO
+    print(pm25, pm10, gas[0], gas[1], gas[2], gas[3])
+    
+    print('Init plotting')
+    plt.ion()
+    fig, ax = plt.subplots(5,1)
+
+    # initialize data structures for plots
+    x  = y0 = y1 = y2 = y3 = y4 = y5 = ([] for i in range(6))
+    l0 = l1 = l2 = l3 = l4 = l5 = None
+    
+    n = 0 #iteration counter
     
     print('Enter acquisition loop')
     dataname = time.strftime('%d_%m_%Y_%H_%M_%S')
@@ -84,11 +89,7 @@ if __name__ == '__main__':
         print("Time elapsed: " + str(time_elapsed))
         
         # get data from sensors
-        # gas[0] = WE_NO2
-        # gas[1] = AE_NO2
-        # gas[2] = WE_CO
-        # gas[3] = AE_CO
-        pm25, pm10, tempo = part_sensor.get_data()
+        pm25, pm10, time = part_sensor.get_data()
         gas = gas_sensor.get_data()
         
         print("pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO") 
@@ -122,8 +123,8 @@ if __name__ == '__main__':
         gasmicro = [0,0,0,0];
         gasmicro[0]= gaspic[0] * 1.88 #NO2
         gasmicro[1]= gaspic[1] * 1.145 #CO
-        gasmicro[2]= gaspic[2] * 1.45 #NO
-        gasmicro[3]= gaspic[3] #VOCs
+        gasmicro[2]= gaspic[2] * 1.45 #NO (== 0)
+        gasmicro[3]= gaspic[3] #VOCs (== 0)
 
         # Write processed data to txt
         print("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gas[0], gas[1], gas[2], gas[3]), "    valori misurati")
