@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
+import csv
 import time
 import matplotlib.pyplot as plt
-import csv
 from ADS1115 import ADS1115
 from SDS011 import SDS011
 
