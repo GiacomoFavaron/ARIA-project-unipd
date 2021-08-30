@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import csv
 import time
 import matplotlib.pyplot as plt
@@ -7,6 +8,24 @@ from ADS1115 import ADS1115
 from SDS011 import SDS011
 
 BUFF_LEN = 60
+dataname = time.strftime('%d_%m_%Y_%H_%M_%S')
+
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        self.log = open("logs/logfile" + dataname+ ".log", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)  
+
+    def flush(self):
+        #this flush method is needed for python 3 compatibility.
+        #this handles the flush command by doing nothing.
+        #you might want to specify some extra behavior here.
+        pass    
+
+sys.stdout = Logger()
 
 if __name__ == '__main__':
     
@@ -55,7 +74,6 @@ if __name__ == '__main__':
     n = 0 #iteration counter
     
     print('Enter acquisition loop')
-    dataname = time.strftime('%d_%m_%Y_%H_%M_%S')
     
     # print raw files headers
     # txt file
