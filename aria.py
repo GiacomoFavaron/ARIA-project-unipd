@@ -4,30 +4,15 @@ import sys
 import csv
 import time
 import matplotlib.pyplot as plt
+from logger import Logger
 from ADS1115 import ADS1115
 from SDS011 import SDS011
 
-BUFF_LEN = 60
-dataname = time.strftime('%d_%m_%Y_%H_%M_%S')
-
-class Logger(object):
-    def __init__(self):
-        self.terminal = sys.stdout
-        self.log = open("logs/logfile" + dataname+ ".log", "a")
-
-    def write(self, message):
-        self.terminal.write(message)
-        self.log.write(message)  
-
-    def flush(self):
-        #this flush method is needed for python 3 compatibility.
-        #this handles the flush command by doing nothing.
-        #you might want to specify some extra behavior here.
-        pass    
-
-sys.stdout = Logger()
 
 if __name__ == '__main__':
+
+    dataname = time.strftime('%d_%m_%Y_%H_%M_%S') # current date and time to name the files
+    sys.stdout = Logger() # to both show stdout in the console and also save it in a log file
     
     print('ARIA data acquisition')
     print('Serial numbers:')
@@ -57,23 +42,18 @@ if __name__ == '__main__':
     print('Read single sample')
     pm25, pm10, time = part_sensor.get_data()
     gas = gas_sensor.get_data() 
-    # gas[0] = WE_NO2
-    # gas[1] = AE_NO2
-    # gas[2] = WE_CO
-    # gas[3] = AE_CO
-    print(pm25, pm10, gas[0], gas[1], gas[2], gas[3])
+    print(pm25, pm10, gas[0], gas[1], gas[2], gas[3]) # gas[0] = WE_NO2, gas[1] = AE_NO2, gas[2] = WE_CO, gas[3] = AE_CO
     
     print('Init plotting')
     plt.ion()
     fig, ax = plt.subplots(5,1)
 
     # initialize data structures for plots
+    BUFF_LEN = 60 # dimension of the buffer which holds the sensor data
     x  = y0 = y1 = y2 = y3 = y4 = y5 = ([] for i in range(6))
     l0 = l1 = l2 = l3 = l4 = l5 = None
     
-    n = 0 #iteration counter
-    
-    print('Enter acquisition loop')
+    n = 0 # iteration counter
     
     # print raw files headers
     # txt file
@@ -96,6 +76,8 @@ if __name__ == '__main__':
     csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'])
     csvProc.close()
+
+    print('Enter acquisition loop')
 
     # Start time count
     start_time = time.time()
