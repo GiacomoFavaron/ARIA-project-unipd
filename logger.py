@@ -1,5 +1,7 @@
+import sys
+
 class Logger(object):
-    def __init__(self):
+    def __init__(self, dataname):
         self.terminal = sys.stdout
         self.log = open("logs/logfile" + dataname+ ".log", "a")
 

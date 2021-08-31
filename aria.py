@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 import csv
 import time
 import matplotlib.pyplot as plt
@@ -12,7 +11,7 @@ from SDS011 import SDS011
 if __name__ == '__main__':
 
     dataname = time.strftime('%d_%m_%Y_%H_%M_%S') # current date and time to name the files
-    sys.stdout = Logger() # to both show stdout in the console and also save it in a log file
+    sys.stdout = Logger(dataname) # to both show stdout in the console and also save it in a log file
     
     print('ARIA data acquisition')
     print('Serial numbers:')
