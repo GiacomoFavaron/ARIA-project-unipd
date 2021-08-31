@@ -54,28 +54,8 @@ if __name__ == '__main__':
     l0 = l1 = l2 = l3 = l4 = l5 = None
     
     n = 0 # iteration counter
-    
-    # print raw files headers
-    # txt file
-    txtraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.txt','w')
-    txtraw.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'))
-    txtraw.close()
-    # csv file
-    csvraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.csv','w', newline = '')
-    csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csvraw_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'])
-    csvraw.close()
-    
-    # print processed files headers
-    # txt file
-    txtProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.txt','w')
-    txtProc.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'))
-    txtProc.close()
-    # csv file
-    csvProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.csv','w', newline = '')
-    csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'])
-    csvProc.close()
+
+    write_file_headers() # Write headers of the raw and processed output files
 
     print('Enter acquisition loop')
 
@@ -204,4 +184,27 @@ if __name__ == '__main__':
         # Wait 1 sec before acquiring next data point
         time.sleep(1.0)
 
-    
+
+        # Utility function to write headers of the output files
+        def write_file_headers():
+            # print raw files headers
+            # txt file
+            txtraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.txt','w')
+            txtraw.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'))
+            txtraw.close()
+            # csv file
+            csvraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.csv','w', newline = '')
+            csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csvraw_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'])
+            csvraw.close()
+            
+            # print processed files headers
+            # txt file
+            txtProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.txt','w')
+            txtProc.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'))
+            txtProc.close()
+            # csv file
+            csvProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.csv','w', newline = '')
+            csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'])
+            csvProc.close()
