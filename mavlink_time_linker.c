@@ -1,17 +1,27 @@
-#include <Python.h>
+//#include <Python.h>
 
-#include <your_dialect/mavlink.h>
+// C library headers
+#include <stdio.h>
+#include <string.h>
 
-#include <common/mavlink.h> //? e' il dialetto come sopra?
+// Linux headers
+#include <fcntl.h> // Contains file controls like O_RDWR
+#include <errno.h> // Error integer and strerror() function
+#include <termios.h> // Contains POSIX terminal control definitions
+#include <unistd.h> // write(), read(), close()
 
-mavlink_system_t mavlink_system = {
-    1, // System ID (1-255)
-    1  // Component ID (a MAV_COMPONENT value)
-};
+#include <common/mavlink.h>
 
 mavlink_status_t status;
 mavlink_message_t msg;
 int chan = MAVLINK_COMM_0;
+
+int serial = open("/dev/ttyUSB0", O_RDWR);
+
+// Check for errors
+if (serial < 0) {
+    printf("Error %i from open: %s\n", errno, strerror(errno));
+}
 
 while(serial.bytesAvailable > 0)
 {
