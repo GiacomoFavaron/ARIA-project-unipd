@@ -92,7 +92,7 @@ uint8_t byte = 0;
 //int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
 
 while(1) {
-    int n = read (fd, &byte, sizeof buf);
+    int n = read (fd, &byte, 1);
     if(n == -1) {
         error_message ("error %d on read: %s", errno, portname, strerror (errno));
         return;
