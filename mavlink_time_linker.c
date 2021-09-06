@@ -1,6 +1,8 @@
 #include <errno.h>
 #include <fcntl.h> 
+#include <inttypes.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <termios.h>
@@ -101,8 +103,6 @@ int main() {
                                         // receive 25:  approx 100 uS per char transmit
         //int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
 
-        FILE* output = open("pixhawk_time.txt", 'w');
-
         uint8_t byte = 0;
 
         while(1) {
@@ -119,11 +119,26 @@ int main() {
                                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
                                         mavlink_msg_system_time_decode(&msg, &time_message);
                                         printf("Unix Pixhawk time = %d\n", time_message.time_unix_usec);
-                                        fprintf(output, "%d,\n", time_message.time_unix_usec);
+                                        // FILE* output = fopen("pixhawk_time.txt", "w");
+                                        // if(output == NULL) {
+                                        //         fprintf(stderr, "Error opening file!\n");
+                                        //         exit(1);
+                                        // }
+                                        // fprintf(output, "Unix Pixhawk time = %d\n", time_message.time_unix_usec);
+                                        // fclose(output);
+                                        // return 0;
                                 }
                                 case MAVLINK_MSG_ID_TIMESYNC: {
                                         mavlink_msg_timesync_decode(&msg, &timesync_message);
                                         printf("Timesync t1 = %d\n", timesync_message.tc1);
+                                        FILE* output = fopen("timesync.txt", "w");
+                                        if(output == NULL) {
+                                                fprintf(stderr, "Error opening file!\n");
+                                                exit(1);
+                                        }
+                                        fprintf(output, "Timesync t1 = %d\n", timesync_message.tc1);
+                                        fclose(output);
+                                        return 0;
                                 }
                         }
                 }
