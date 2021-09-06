@@ -130,13 +130,13 @@ int main() {
                                 }
                                 case MAVLINK_MSG_ID_TIMESYNC: {
                                         mavlink_msg_timesync_decode(&msg, &timesync_message);
-                                        printf("Timesync t1 = %d\n", timesync_message.tc1);
+                                        printf("Timesync tc1 = %d\n", timesync_message.tc1);
                                         FILE* output = fopen("timesync.txt", "w");
                                         if(output == NULL) {
                                                 fprintf(stderr, "Error opening file!\n");
                                                 exit(1);
                                         }
-                                        fprintf(output, "Timesync t1 = %d\n", timesync_message.tc1);
+                                        fprintf(output, "Timesync tc1 = %d\n", timesync_message.tc1);
                                         fclose(output);
                                         return 0;
                                 }

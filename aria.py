@@ -90,7 +90,7 @@ if __name__ == '__main__':
     # Start time count
     start_time = time.time()
 
-    # Read mavlink_time_time linker output
+    # Read mavlink_time_linker output
     pixhawk_time_file = open('pixhawk_time.txt', 'r')
     pixhawk_time = pixhawk_time_file.read()
     print('pixhawk time = ' + pixhawk_time)
