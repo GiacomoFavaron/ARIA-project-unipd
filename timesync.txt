@@ -1,1 +1,2 @@
-Timesync t1 = 0
+Timesync tc1 = 0
+Timesync ts1 = 189237

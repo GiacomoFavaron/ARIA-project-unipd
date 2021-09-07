@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <termios.h>
+#include <time.h>
 #include <unistd.h>
 
 #include <common/mavlink.h>
@@ -114,32 +115,38 @@ int main() {
                         return 1;
                 }
                 if (mavlink_parse_char(chan, byte, &msg, &status)) {
-                        printf("Received message with ID %d, sequence: %d from component %d of system %d\n", msg.msgid, msg.seq, msg.compid, msg.sysid);
+                        //printf("Received message with ID %d, sequence: %d from component %d of system %d\n", msg.msgid, msg.seq, msg.compid, msg.sysid);
                         switch(msg.msgid) {
                                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
                                         mavlink_msg_system_time_decode(&msg, &time_message);
-                                        printf("Unix Pixhawk time = %d\n", time_message.time_unix_usec);
-                                        // FILE* output = fopen("pixhawk_time.txt", "w");
-                                        // if(output == NULL) {
-                                        //         fprintf(stderr, "Error opening file!\n");
-                                        //         exit(1);
-                                        // }
-                                        // fprintf(output, "Unix Pixhawk time = %d\n", time_message.time_unix_usec);
-                                        // fclose(output);
-                                        // return 0;
-                                }
-                                case MAVLINK_MSG_ID_TIMESYNC: {
-                                        mavlink_msg_timesync_decode(&msg, &timesync_message);
-                                        printf("Timesync tc1 = %d\n", timesync_message.tc1);
-                                        FILE* output = fopen("timesync.txt", "w");
+                                        printf("Raspberry Unix time = %u\n", (unsigned)time(NULL));
+                                        printf("UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
+                                        printf("time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
+                                        FILE* output = fopen("pixhawk_time.txt", "w");
                                         if(output == NULL) {
                                                 fprintf(stderr, "Error opening file!\n");
                                                 exit(1);
                                         }
-                                        fprintf(output, "Timesync tc1 = %d\n", timesync_message.tc1);
+                                        fprintf(output, "Raspberry Unix time = %u\n", (unsigned)time(NULL));
+                                        fprintf(output, "UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
+                                        fprintf(output, "time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
                                         fclose(output);
-                                        return 0;
+                                        //return 0;
                                 }
+                                // case MAVLINK_MSG_ID_TIMESYNC: {
+                                //         mavlink_msg_timesync_decode(&msg, &timesync_message);
+                                //         printf("Timesync tc1 = %" PRId64 "\n", timesync_message.tc1);
+                                //         printf("Timesync ts1 = %" PRId64 "\n", timesync_message.ts1);
+                                //         FILE* output = fopen("timesync.txt", "w");
+                                //         if(output == NULL) {
+                                //                 fprintf(stderr, "Error opening file!\n");
+                                //                 exit(1);
+                                //         }
+                                //         fprintf(output, "Timesync tc1 = %" PRId64 "\n", timesync_message.tc1);
+                                //         fprintf(output, "Timesync ts1 = %" PRId64 "\n", timesync_message.ts1);
+                                //         fclose(output);
+                                //         //return 0;
+                                // }
                         }
                 }
         }
