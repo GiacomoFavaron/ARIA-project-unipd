@@ -155,9 +155,9 @@ int main() {
                                 //         //return 0;
                                 // }
                                 case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
-                                        // if(mavlink_unix_time == 0) {
-                                        //         continue;
-                                        // }
+                                        if(mavlink_unix_time == 0) {
+                                                continue;
+                                        }
                                         mavlink_msg_global_position_int_decode(&msg, &global_message);
                                         output = fopen("mavlink_output.csv", "a");
                                         if(output == NULL) {
