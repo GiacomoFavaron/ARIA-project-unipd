@@ -12,6 +12,7 @@
 #include <common/mavlink.h>
 #include <common/mavlink_msg_system_time.h>
 #include <common/mavlink_msg_timesync.h>
+#include <common/mavlink_msg_global_position_int.h>
 
 int
 set_interface_attribs (int fd, int speed, int parity)
@@ -83,8 +84,11 @@ int main() {
         mavlink_status_t status;
         mavlink_message_t msg;
         int chan = MAVLINK_COMM_0;
+
+        // structs to store the received messages
         mavlink_system_time_t time_message;
         mavlink_timesync_t timesync_message;
+        mavlink_global_position_int_t global_message;
 
         char *portname = "/dev/ttyS0";   // telem2 port
 
@@ -105,6 +109,13 @@ int main() {
         //int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
 
         uint8_t byte = 0;
+        FILE* output = fopen("mavlink_output.csv", "w");
+        if(output == NULL) {
+                fprintf(stderr, "Error opening mavlink_output.csv!\n");
+                exit(1);
+        }
+        //fprintf();
+        fclose(output);
 
         while(1) {
                 int n = read (fd, &byte, 1);
@@ -115,7 +126,7 @@ int main() {
                         return 1;
                 }
                 if (mavlink_parse_char(chan, byte, &msg, &status)) {
-                        //printf("Received message with ID %d, sequence: %d from component %d of system %d\n", msg.msgid, msg.seq, msg.compid, msg.sysid);
+                        printf("Received message with ID %d, sequence: %d from component %d of system %d\n", msg.msgid, msg.seq, msg.compid, msg.sysid);
                         switch(msg.msgid) {
                                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
                                         mavlink_msg_system_time_decode(&msg, &time_message);
@@ -135,8 +146,8 @@ int main() {
                                 }
                                 // case MAVLINK_MSG_ID_TIMESYNC: {
                                 //         mavlink_msg_timesync_decode(&msg, &timesync_message);
-                                //         printf("Timesync tc1 = %" PRId64 "\n", timesync_message.tc1);
-                                //         printf("Timesync ts1 = %" PRId64 "\n", timesync_message.ts1);
+                                //         printf("Timesync tc1 = %" PRId64 "\n", timesync_message.tc1); // it's the unix epoch time
+                                //         printf("Timesync ts1 = %" PRId64 "\n", timesync_message.ts1); // it's the time since system boot
                                 //         FILE* output = fopen("timesync.txt", "w");
                                 //         if(output == NULL) {
                                 //                 fprintf(stderr, "Error opening file!\n");
@@ -147,6 +158,19 @@ int main() {
                                 //         fclose(output);
                                 //         //return 0;
                                 // }
+                                case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
+                                        mavlink_msg_global_position_int_decode(&msg, &global_message);
+                                        FILE* output = fopen("global_position_int.csv", "w");
+                                        if(output == NULL) {
+                                                fprintf(stderr, "Error opening file!\n");
+                                                exit(1);
+                                        }
+                                        fprintf(output, "Raspberry Unix time = %u\n", (unsigned)time(NULL));
+                                        fprintf(output, "UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
+                                        fprintf(output, "time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
+                                        fclose(output);
+                                        //return 0;
+                                }
                         }
                 }
         }
