@@ -109,12 +109,16 @@ int main() {
         //int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
 
         uint8_t byte = 0;
+        uint64_t mavlink_unix_time = 0;
+        uint64_t time_since_boot = 0;
+
+        // Print output file headers
         FILE* output = fopen("mavlink_output.csv", "w");
         if(output == NULL) {
                 fprintf(stderr, "Error opening mavlink_output.csv!\n");
                 exit(1);
         }
-        //fprintf();
+        fprintf(output, "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", "UNIX time mavlink", "time since system boot mavlink", "lat", "lon", "alt", "relative_alt", "vx", "vy", "vz", "hdg");
         fclose(output);
 
         while(1) {
@@ -130,46 +134,48 @@ int main() {
                         switch(msg.msgid) {
                                 case MAVLINK_MSG_ID_SYSTEM_TIME: {
                                         mavlink_msg_system_time_decode(&msg, &time_message);
-                                        printf("Raspberry Unix time = %u\n", (unsigned)time(NULL));
-                                        printf("UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
-                                        printf("time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
-                                        FILE* output = fopen("pixhawk_time.txt", "w");
-                                        if(output == NULL) {
-                                                fprintf(stderr, "Error opening file!\n");
-                                                exit(1);
-                                        }
-                                        fprintf(output, "Raspberry Unix time = %u\n", (unsigned)time(NULL));
-                                        fprintf(output, "UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
-                                        fprintf(output, "time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
-                                        fclose(output);
-                                        //return 0;
+                                        // printf("Raspberry Unix time = %u\n", (unsigned)time(NULL));
+                                        // printf("UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
+                                        // printf("time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
+                                        mavlink_unix_time = time_message.time_unix_usec;
+                                        time_since_boot = time_message.time_boot_ms;
                                 }
                                 // case MAVLINK_MSG_ID_TIMESYNC: {
                                 //         mavlink_msg_timesync_decode(&msg, &timesync_message);
                                 //         printf("Timesync tc1 = %" PRId64 "\n", timesync_message.tc1); // it's the unix epoch time
                                 //         printf("Timesync ts1 = %" PRId64 "\n", timesync_message.ts1); // it's the time since system boot
-                                //         FILE* output = fopen("timesync.txt", "w");
+                                //         output = fopen("mavlink_output.csv", "a");
                                 //         if(output == NULL) {
-                                //                 fprintf(stderr, "Error opening file!\n");
+                                //                 fprintf(stderr, "Error opening mavlink_output.csv!\n");
                                 //                 exit(1);
                                 //         }
-                                //         fprintf(output, "Timesync tc1 = %" PRId64 "\n", timesync_message.tc1);
-                                //         fprintf(output, "Timesync ts1 = %" PRId64 "\n", timesync_message.ts1);
+                                //         fprintf(output, "%" PRId64 ",", timesync_message.tc1);
+                                //         //fprintf(output, "%" PRId64 ",", timesync_message.ts1);
                                 //         fclose(output);
                                 //         //return 0;
                                 // }
                                 case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
+                                        // if(mavlink_unix_time == 0) {
+                                        //         continue;
+                                        // }
                                         mavlink_msg_global_position_int_decode(&msg, &global_message);
-                                        FILE* output = fopen("global_position_int.csv", "w");
+                                        output = fopen("mavlink_output.csv", "a");
                                         if(output == NULL) {
-                                                fprintf(stderr, "Error opening file!\n");
+                                                fprintf(stderr, "Error opening mavlink_output.csv!\n");
                                                 exit(1);
                                         }
-                                        fprintf(output, "Raspberry Unix time = %u\n", (unsigned)time(NULL));
-                                        fprintf(output, "UNIX epoch time = %" PRIu64 "\n", time_message.time_unix_usec);
-                                        fprintf(output, "time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
+                                        fprintf(output, "%" PRIu64 ",", mavlink_unix_time);
+                                        fprintf(output, "%" PRIu32 ",", time_since_boot);
+                                        fprintf(output, "%" PRId32 ",", global_message.lat);
+                                        fprintf(output, "%" PRId32 ",", global_message.lon);
+                                        fprintf(output, "%" PRId32 ",", global_message.alt);
+                                        fprintf(output, "%" PRId32 ",", global_message.relative_alt);
+                                        fprintf(output, "%" PRId16 ",", global_message.vx);
+                                        fprintf(output, "%" PRId16 ",", global_message.vy);
+                                        fprintf(output, "%" PRId16 ",", global_message.vz);
+                                        fprintf(output, "%" PRIu16 "\n", global_message.hdg);
                                         fclose(output);
-                                        //return 0;
+                                        return 0;
                                 }
                         }
                 }
