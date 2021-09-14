@@ -1,2 +1,0 @@
-Timesync tc1 = 1631263600546199
-Timesync ts1 = 388236

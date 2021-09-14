@@ -1,3 +1,0 @@
-Raspberry Unix time = 1631263964
-UNIX epoch time = 0
-time since system boot = 193248

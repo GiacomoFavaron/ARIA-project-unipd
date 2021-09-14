@@ -1,0 +1,28 @@
+ARIA data acquisition
+Serial numbers:
+NO2: 212890332
+CO: 132420228
+Sensors init
+Read single sample
+4.7 5.0 291.09375 305.78125 321.625 262.28125
+Init plotting
+Enter acquisition loop
+Time elapsed: 1.430511474609375e-05
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+5.300   5.700   289.625   301.000   312.062   257.375     valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+5.300   5.700   -12.729   155.258   0.000   0.000     valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+5.300   5.700   289.625   301.000   312.062   257.375     valori misurati
+5.300   5.700   -23.931   177.770   0.000   0.000     valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+
+
+Time elapsed: 5.127408742904663
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+5.600   6.200   297.812   303.375   316.812   267.500     valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+5.600   6.200   4.128   234.375   0.000   0.000     valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+5.600   6.200   297.812   303.375   316.812   267.500     valori misurati
+5.600   6.200   7.761   268.359   0.000   0.000     valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+
+
+Time elapsed: 8.015665054321289

@@ -43,9 +43,9 @@ if __name__ == '__main__':
     print('NO2: 212890332')
     print('CO: 132420228')
     
-    val = input('Type y to confirm serial numbers match: ')
-    if val != 'y':
-        exit("Wrong sensors")
+##    val = input('Type y to confirm serial numbers match: ')
+##    if val != 'y':
+##        exit("Wrong sensors")
 
     # values for sensor NO2 serial number 212890332
     WE_e_NO2 = 300
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     gas_sensor = ADS1115()
     
     print('Read single sample')
-    pm25, pm10, time = part_sensor.get_data()
+    pm25, pm10, tempo = part_sensor.get_data()
     gas = gas_sensor.get_data() 
     print(pm25, pm10, gas[0], gas[1], gas[2], gas[3]) # gas[0] = WE_NO2, gas[1] = AE_NO2, gas[2] = WE_CO, gas[3] = AE_CO
     
@@ -74,7 +74,13 @@ if __name__ == '__main__':
 
     # initialize data structures for plots
     BUFF_LEN = 60 # dimension of the buffer which holds the sensor data
-    x  = y0 = y1 = y2 = y3 = y4 = y5 = ([] for i in range(6))
+    x  = []
+    y0 = []
+    y1 = []
+    y2 = []
+    y3 = []
+    y4 = []
+    y5 = []
     l0 = l1 = l2 = l3 = l4 = l5 = None
     
     n = 0 # iteration counter
@@ -83,9 +89,6 @@ if __name__ == '__main__':
     write_file_headers()
 
     print('Enter acquisition loop')
-
-    # Call c script to get pixhawk system_time
-    call(["./mavlink_time_linker"])
 
     # Start time count
     start_time = time.time()
@@ -103,7 +106,7 @@ if __name__ == '__main__':
         print("Time elapsed: " + str(time_elapsed))
         
         # get data from sensors
-        pm25, pm10, time = part_sensor.get_data()
+        pm25, pm10, tempo = part_sensor.get_data()
         gas = gas_sensor.get_data()
         
         print("pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO") 

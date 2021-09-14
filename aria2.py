@@ -4,7 +4,7 @@ import sys
 import csv
 import time
 import matplotlib.pyplot as plt
-from subprocess import call
+import subprocess
 from logger import Logger
 from ADS1115 import ADS1115
 from SDS011 import SDS011
@@ -13,22 +13,22 @@ from SDS011 import SDS011
 def write_file_headers():
     # print raw files headers
     # txt file
-    txtraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.txt','w')
+    txtraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.txt','w')
     txtraw.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'))
     txtraw.close()
     # csv file
-    csvraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.csv','w', newline = '')
+    csvraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.csv','w', newline = '')
     csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     csvraw_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'])
     csvraw.close()
     
     # print processed files headers
     # txt file
-    txtProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.txt','w')
+    txtProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.txt','w')
     txtProc.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'))
     txtProc.close()
     # csv file
-    csvProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.csv','w', newline = '')
+    csvProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.csv','w', newline = '')
     csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'])
     csvProc.close()
@@ -43,9 +43,9 @@ if __name__ == '__main__':
     print('NO2: 212890332')
     print('CO: 132420228')
     
-    val = input('Type y to confirm serial numbers match: ')
-    if val != 'y':
-        exit("Wrong sensors")
+    # val = input('Type y to confirm serial numbers match: ')
+    # if val != 'y':
+    #     exit("Wrong sensors")
 
     # values for sensor NO2 serial number 212890332
     WE_e_NO2 = 300
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     gas_sensor = ADS1115()
     
     print('Read single sample')
-    pm25, pm10, time = part_sensor.get_data()
+    pm25, pm10, tempo = part_sensor.get_data()
     gas = gas_sensor.get_data() 
     print(pm25, pm10, gas[0], gas[1], gas[2], gas[3]) # gas[0] = WE_NO2, gas[1] = AE_NO2, gas[2] = WE_CO, gas[3] = AE_CO
     
@@ -74,36 +74,41 @@ if __name__ == '__main__':
 
     # initialize data structures for plots
     BUFF_LEN = 60 # dimension of the buffer which holds the sensor data
-    x  = y0 = y1 = y2 = y3 = y4 = y5 = ([] for i in range(6))
+    x, y0, y1, y2, y3, y4, y5 = [[] for i in range(7)]
     l0 = l1 = l2 = l3 = l4 = l5 = None
-    
     n = 0 # iteration counter
 
     # Write headers of the raw and processed output files
     write_file_headers()
 
-    print('Enter acquisition loop')
+    # Call c script to print headers
+    subprocess.run(["./mavlink_time_linker", dataname, "0"])
+    subprocess.CompletedProcess(args=["./mavlink_time_linker", dataname, "0"], returncode = 0)
 
-    # Call c script to get pixhawk system_time
-    call(["./mavlink_time_linker"])
+    print('Enter acquisition loop')
 
     # Start time count
     start_time = time.time()
 
-    # Read mavlink_time_linker output
-    pixhawk_time_file = open('pixhawk_time.txt', 'r')
-    pixhawk_time = pixhawk_time_file.read()
-    print('pixhawk time = ' + pixhawk_time)
-    pixhawk_time_file.close()
+    # # Read mavlink_time_linker output
+    # pixhawk_time_file = open('pixhawk_time.txt', 'r')
+    # pixhawk_time = pixhawk_time_file.read()
+    # print('pixhawk time = ' + pixhawk_time)
+    # pixhawk_time_file.close()
     
     while True:
         
         time_elapsed = time.time() - start_time
 
         print("Time elapsed: " + str(time_elapsed))
+
+        # Call c script to get telemetry data
+        subprocess.run(["./mavlink_time_linker", dataname, "1"])
+        subprocess.CompletedProcess(args=["./mavlink_time_linker", dataname, "1"], returncode = 0)
+
         
         # get data from sensors
-        pm25, pm10, time = part_sensor.get_data()
+        pm25, pm10, tempo = part_sensor.get_data()
         gas = gas_sensor.get_data()
         
         print("pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO") 
@@ -111,12 +116,12 @@ if __name__ == '__main__':
         print("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gas[0], gas[1], gas[2], gas[3]), "    valori misurati")
 
         # Write raw data to txt
-        txtraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.txt','a')
+        txtraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.txt','a')
         txtraw.write('%r %r %r %r %r %r %r %r %r \n' % (time_elapsed, pm25, pm10, gas[0], gas[1], gas[2], gas[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')))
         txtraw.close()
 
         # Write raw data to csv
-        csvraw = open('/home/pi/Desktop/Refactor/rilevazioni/misuredrone' + dataname + '.csv','a', newline = '')
+        csvraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.csv','a', newline = '')
         csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csvraw_writer.writerow([time_elapsed, pm25, pm10, gas[0], gas[1], gas[2], gas[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')])
         csvraw.close()
@@ -142,12 +147,12 @@ if __name__ == '__main__':
 
         # Write processed data to txt
         print("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gas[0], gas[1], gas[2], gas[3]), "    valori misurati")
-        txtProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.txt','a')
+        txtProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.txt','a')
         txtProc.write('%r %r %r %r %r %r %r %r %r \n' % (time_elapsed, pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')))
         txtProc.close()
 
         # Write processed data to csv
-        csvProc = open('/home/pi/Desktop/Refactor/rilevazioni/misuredroneProc' + dataname + '.csv','a', newline = '')
+        csvProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.csv','a', newline = '')
         csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csvProc_writer.writerow([time_elapsed, pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')])
         csvProc.close()

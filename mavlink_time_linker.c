@@ -74,7 +74,7 @@ set_blocking (int fd, int should_block)
 
 //--------------------
 
-int main() {
+int main(int argc, char* argv[]) {
 
         mavlink_system_t mavlink_system = {
                 1, // System ID
@@ -111,15 +111,24 @@ int main() {
         uint8_t byte = 0;
         uint64_t mavlink_unix_time = 0;
         uint64_t time_since_boot = 0;
+        bool flag = false;
 
         // Print output file headers
-        FILE* output = fopen("mavlink_output.csv", "w");
-        if(output == NULL) {
-                fprintf(stderr, "Error opening mavlink_output.csv!\n");
-                exit(1);
+        FILE* output;
+        char filename[256];
+        snprintf(filename, sizeof(filename), "%s%s%s", "acquisitions/mavlink_output", argv[1], ".csv");
+
+        // If first call write headers
+        if(atoi(argv[2]) == 0) {
+                output = fopen(filename, "w");
+                if(output == NULL) {
+                        fprintf(stderr, "Error opening mavlink_output.csv!\n");
+                        exit(1);
+                }
+                fprintf(output, "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", "UNIX time mavlink", "time since system boot mavlink", "lat", "lon", "alt", "relative_alt", "vx", "vy", "vz", "hdg");
+                fclose(output);
+                return 0;
         }
-        fprintf(output, "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n", "UNIX time mavlink", "time since system boot mavlink", "lat", "lon", "alt", "relative_alt", "vx", "vy", "vz", "hdg");
-        fclose(output);
 
         while(1) {
                 int n = read (fd, &byte, 1);
@@ -139,6 +148,7 @@ int main() {
                                         // printf("time since system boot = %" PRIu32 "\n", time_message.time_boot_ms);
                                         mavlink_unix_time = time_message.time_unix_usec;
                                         time_since_boot = time_message.time_boot_ms;
+                                        flag = true;
                                 }
                                 // case MAVLINK_MSG_ID_TIMESYNC: {
                                 //         mavlink_msg_timesync_decode(&msg, &timesync_message);
@@ -155,11 +165,11 @@ int main() {
                                 //         //return 0;
                                 // }
                                 case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
-                                        if(mavlink_unix_time == 0) {
+                                        if(!flag) {
                                                 continue;
                                         }
                                         mavlink_msg_global_position_int_decode(&msg, &global_message);
-                                        output = fopen("mavlink_output.csv", "a");
+                                        output = fopen(filename, "a");
                                         if(output == NULL) {
                                                 fprintf(stderr, "Error opening mavlink_output.csv!\n");
                                                 exit(1);
