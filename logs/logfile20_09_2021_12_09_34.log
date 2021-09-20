@@ -1,0 +1,171 @@
+ARIA data acquisition
+Serial numbers:
+NO2: 212890332
+CO: 132420228
+Sensors init
+Read single sample
+1.000   1.800   296.781   303.031   311.031   269.625
+Init plotting
+Enter acquisition loop
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+1.000   1.700   297.219   305.906   308.594   263.844    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+1.000   1.700   -20.657   179.998   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+1.000   1.700   297.219   305.906   308.594   263.844    valori misurati
+1.000   1.700   -38.834   206.097   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.600   296.656   304.375   313.906   277.031    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.600   -9.891   279.576   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.600   296.656   304.375   313.906   277.031    valori misurati
+0.900   1.600   -18.595   320.114   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.500   295.875   304.312   314.312   277.750    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.500   -12.930   285.466   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.500   295.875   304.312   314.312   277.750    valori misurati
+0.900   1.500   -24.308   326.859   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+1.000   1.600   297.312   304.750   311.469   275.656    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+1.000   1.600   -10.149   261.719   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+1.000   1.600   297.312   304.750   311.469   275.656    valori misurati
+1.000   1.600   -19.080   299.668   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.500   295.625   304.469   310.781   271.406    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.500   -15.439   233.693   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.500   295.625   304.469   310.781   271.406    valori misurati
+0.900   1.500   -29.025   267.578   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.500   297.375   303.969   311.844   276.438    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.500   -3.053   267.857   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.500   297.375   303.969   311.844   276.438    valori misurati
+0.900   1.500   -5.740   306.696   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.400   297.250   303.312   297.094   242.156    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.400   2.093   5.270   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.400   297.250   303.312   297.094   242.156    valori misurati
+0.900   1.400   3.935   6.035   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.300   296.500   302.188   311.000   274.719    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.300   8.458   254.278   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.300   296.500   302.188   311.000   274.719    valori misurati
+0.900   1.300   15.900   291.149   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.300   296.406   303.344   302.812   249.156    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.300   -2.050   69.630   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.300   296.406   303.344   302.812   249.156    valori misurati
+0.900   1.300   -3.854   79.727   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.300   296.812   310.344   307.531   265.875    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.300   -61.196   187.872   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.300   296.812   310.344   307.531   265.875    valori misurati
+0.900   1.300   -115.048   215.113   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.200   298.000   312.250   306.781   249.219    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.200   -72.362   85.751   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.200   298.000   312.250   306.781   249.219    valori misurati
+0.900   1.200   -136.041   98.185   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.800   1.200   297.344   306.938   311.875   273.750    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.800   1.200   -29.071   251.984   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.800   1.200   297.344   306.938   311.875   273.750    valori misurati
+0.800   1.200   -54.654   288.522   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.800   1.200   297.031   300.125   310.781   269.000    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.800   1.200   28.870   219.370   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.800   1.200   297.031   300.125   310.781   269.000    valori misurati
+0.800   1.200   54.276   251.179   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.800   1.100   295.531   303.969   312.938   271.719    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.800   1.100   -11.511   244.110   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.800   1.100   295.531   303.969   312.938   271.719    valori misurati
+0.800   1.100   -21.640   279.506   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.100   296.281   308.438   312.312   272.969    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.100   -47.018   249.070   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.100   296.281   308.438   312.312   272.969    valori misurati
+0.900   1.100   -88.394   285.185   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.200   295.219   308.688   310.531   267.844    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.200   -54.071   211.496   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.200   295.219   308.688   310.531   267.844    valori misurati
+0.900   1.200   -101.654   242.162   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.300   296.750   304.406   308.438   268.375    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.300   -9.733   206.349   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.300   296.750   304.406   308.438   268.375    valori misurati
+0.900   1.300   -18.299   236.270   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.300   297.031   305.938   313.125   273.938    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.300   -21.789   258.061   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.300   297.031   305.938   313.125   273.938    valori misurati
+0.900   1.300   -40.963   295.479   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.400   297.344   307.500   310.562   276.062    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.400   -33.974   260.541   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.400   297.344   307.500   310.562   276.062    valori misurati
+0.900   1.400   -63.870   298.319   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+1.000   1.400   297.500   305.750   310.500   273.156    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+1.000   1.400   -18.005   242.994   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+1.000   1.400   297.500   305.750   310.500   273.156    valori misurati
+1.000   1.400   -33.849   278.228   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   2.000   297.062   302.875   312.375   274.219    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   2.000   5.046   256.758   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   2.000   297.062   302.875   312.375   274.219    valori misurati
+0.900   2.000   9.486   293.988   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   2.000   296.969   306.594   310.219   266.094    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   2.000   -27.795   199.839   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   2.000   296.969   306.594   310.219   266.094    valori misurati
+0.900   2.000   -52.255   228.815   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   2.000   296.656   307.031   301.562   258.375    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   2.000   -33.042   119.544   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   2.000   296.656   307.031   301.562   258.375    valori misurati
+0.900   2.000   -62.119   136.877   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   2.100   295.625   307.719   304.875   262.969    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   2.100   -43.764   160.032   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   2.100   295.625   307.719   304.875   262.969    valori misurati
+0.900   2.100   -82.277   183.237   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   2.000   296.219   303.938   309.125   268.219    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   2.000   -8.085   208.147   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   2.000   296.219   303.938   309.125   268.219    valori misurati
+0.900   2.000   -15.200   238.329   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.500   296.938   307.406   310.062   273.000    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.500   -35.020   240.327   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.500   296.938   307.406   310.062   273.000    valori misurati
+0.900   1.500   -65.838   275.175   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+0.900   1.500   296.781   308.156   309.531   270.938    valori misurati
+pm25     pm10     NO2      CO       NO   VOCs
+0.900   1.500   -42.274   225.942   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+0.900   1.500   296.781   308.156   309.531   270.938    valori misurati
+0.900   1.500   -79.474   258.704   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
