@@ -122,9 +122,10 @@ if __name__ == '__main__':
 
         logging.info("Calling mavlink_data.c to get telemetry data")
 
-        telem = subprocess.run(["./mavlink_data", dataname, "1"])
-        if telem.returncode != 0:
-            logging.error('Error getting telemetry data through Mavlink, check the connection and try again!')
+        try:
+            telem = subprocess.run(["./mavlink_data", dataname, "1"], timeout = 10)
+        except subprocess.TimeoutExpired:
+            logging.error("No response from mavlink autopilot for telemetry data! Check connection and restart the program.")
             sys.exit()
         subprocess.CompletedProcess(args=["./mavlink_data", dataname, "1"], returncode = 0)
 
