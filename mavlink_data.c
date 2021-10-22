@@ -76,6 +76,11 @@ set_blocking (int fd, int should_block)
 
 int main(int argc, char* argv[]) {
 
+        if(argc < 3) {
+                fprintf (stderr, "Usage: './mavlink_data filename code");
+                return 1;
+        }
+
         mavlink_system_t mavlink_system = {
                 1, // System ID
                 1  // Component ID
@@ -131,6 +136,8 @@ int main(int argc, char* argv[]) {
         }
 
         while(1) {
+                if(flag)
+                        break;
                 int n = read (fd, &byte, 1);
                 //printf("read returns: %d\n", n);
                 //printf("The read byte is: %d\n", byte);
@@ -150,30 +157,31 @@ int main(int argc, char* argv[]) {
                                         time_since_boot = time_message.time_boot_ms;
                                         flag = true;
                                 }
-                                // case MAVLINK_MSG_ID_TIMESYNC: {
-                                //         mavlink_msg_timesync_decode(&msg, &timesync_message);
-                                //         printf("Timesync tc1 = %" PRId64 "\n", timesync_message.tc1); // it's the unix epoch time
-                                //         printf("Timesync ts1 = %" PRId64 "\n", timesync_message.ts1); // it's the time since system boot
-                                //         output = fopen("mavlink_output.csv", "a");
-                                //         if(output == NULL) {
-                                //                 fprintf(stderr, "Error opening mavlink_output.csv!\n");
-                                //                 exit(1);
-                                //         }
-                                //         fprintf(output, "%" PRId64 ",", timesync_message.tc1);
-                                //         //fprintf(output, "%" PRId64 ",", timesync_message.ts1);
-                                //         fclose(output);
-                                //         //return 0;
-                                // }
+                                
+                        }
+                }
+        }
+
+
+        mavlink_message_t msg2;
+        while(1) {
+                int n = read (fd, &byte, 1);
+                //printf("read returns: %d\n", n);
+                //printf("The read byte is: %d\n", byte);
+                if(n == -1) {
+                        fprintf (stderr, "error %d on read: %s", errno, portname, strerror (errno));
+                        return 1;
+                }
+                if (mavlink_parse_char(chan, byte, &msg2, &status)) {
+                        printf("Received message with ID %d, sequence: %d from component %d of system %d\n", msg2.msgid, msg2.seq, msg2.compid, msg2.sysid);
+                        switch(msg2.msgid) {
                                 case MAVLINK_MSG_ID_GLOBAL_POSITION_INT: {
-                                        if(!flag) {
-                                                continue;
-                                        }
-                                        mavlink_msg_global_position_int_decode(&msg, &global_message);
+                                        mavlink_msg_global_position_int_decode(&msg2, &global_message);
                                         output = fopen(filename, "a");
                                         if(output == NULL) {
                                                 fprintf(stderr, "Error opening mavlink_output.csv!\n");
                                                 exit(1);
-                                        }
+                                        }                                        
                                         fprintf(output, "%" PRIu64 ",", mavlink_unix_time);
                                         fprintf(output, "%" PRIu32 ",", time_since_boot);
                                         fprintf(output, "%" PRId32 ",", global_message.lat);
@@ -190,5 +198,4 @@ int main(int argc, char* argv[]) {
                         }
                 }
         }
-
 }

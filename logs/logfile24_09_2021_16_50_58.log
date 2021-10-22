@@ -1,0 +1,36 @@
+2021-09-24 16:50:58,399 - root - INFO - ARIA data acquisition
+2021-09-24 16:50:58,405 - root - INFO - Serial numbers:
+2021-09-24 16:50:58,406 - root - INFO - NO2: 212890332
+2021-09-24 16:50:58,407 - root - INFO - CO: 132420228
+2021-09-24 16:50:58,408 - root - INFO - Sensors init
+2021-09-24 16:50:58,495 - root - INFO - Read single sample
+2021-09-24 16:50:58,539 - root - INFO - 211.200   627.700   295.750   301.125   340.500   270.562
+2021-09-24 16:50:58,540 - root - INFO - Init plotting
+2021-09-24 16:50:59,298 - root - INFO - Enter acquisition loop
+2021-09-24 16:50:59,300 - root - INFO - Time elapsed: 7.3909759521484375e-06
+2021-09-24 16:50:59,301 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-09-24 16:50:59,768 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-09-24 16:50:59,770 - root - INFO - 161.700   439.100   296.406   300.688   335.406   261.688    valori misurati
+2021-09-24 16:50:59,771 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-09-24 16:50:59,772 - root - INFO - 161.700   439.100   21.101   273.562   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-09-24 16:50:59,773 - root - INFO - 161.700   439.100   296.406   300.688   335.406   261.688    valori misurati
+2021-09-24 16:50:59,775 - root - INFO - 161.700   439.100   39.670   313.228   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-09-24 16:51:04,144 - root - INFO - Time elapsed: 4.843310594558716
+2021-09-24 16:51:04,152 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-09-24 16:51:04,781 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-09-24 16:51:04,784 - root - INFO - 121.500   269.600   297.000   304.062   331.312   257.594    valori misurati
+2021-09-24 16:51:04,788 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-09-24 16:51:04,790 - root - INFO - 121.500   269.600   -5.591   232.949   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-09-24 16:51:04,793 - root - INFO - 121.500   269.600   297.000   304.062   331.312   257.594    valori misurati
+2021-09-24 16:51:04,796 - root - INFO - 121.500   269.600   -10.510   266.727   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-09-24 16:51:07,556 - root - INFO - Time elapsed: 8.255515098571777
+2021-09-24 16:51:07,558 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-09-24 16:52:11,992 - root - ERROR - Interrupt in mainloop
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 96, in mainloop
+    cmd = self._fetch_command()
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 449, in _fetch_command
+    line = self._original_stdin.readline()
+  File "/usr/lib/python3/dist-packages/thonny/shared/thonny/backend.py", line 133, in signal_handler
+    raise KeyboardInterrupt("Execution interrupted")
+KeyboardInterrupt: Execution interrupted

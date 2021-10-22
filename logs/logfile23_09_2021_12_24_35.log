@@ -1,0 +1,12 @@
+2021-09-23 12:24:35,762 - root - INFO - ARIA data acquisition
+2021-09-23 12:24:35,764 - root - INFO - Serial numbers:
+2021-09-23 12:24:35,766 - root - INFO - NO2: 212890332
+2021-09-23 12:24:35,768 - root - INFO - CO: 132420228
+2021-09-23 12:24:35,770 - root - INFO - Sensors init
+2021-09-23 12:24:35,877 - root - INFO - Read single sample
+2021-09-23 12:24:36,243 - root - INFO - 21.400   28.700   337.281   334.688   1023.969   196.312
+2021-09-23 12:24:36,246 - root - INFO - Init plotting
+2021-09-23 12:24:37,054 - root - INFO - Enter acquisition loop
+2021-09-23 12:24:37,057 - root - INFO - Time elapsed: 1.1205673217773438e-05
+2021-09-23 12:24:37,059 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-09-23 12:24:47,074 - root - ERROR - No response from mavlink autopilot for telemetry data! Check connection and restart the program.

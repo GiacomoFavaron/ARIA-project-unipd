@@ -1,0 +1,89 @@
+2021-10-22 17:28:29,860 - root - INFO - ARIA data acquisition
+2021-10-22 17:28:29,862 - root - INFO - Serial numbers:
+2021-10-22 17:28:29,864 - root - INFO - NO2: 212890332
+2021-10-22 17:28:29,865 - root - INFO - CO: 132420228
+2021-10-22 17:28:29,866 - root - INFO - Sensors init
+2021-10-22 17:28:29,959 - root - INFO - Read single sample
+2021-10-22 17:28:30,352 - root - INFO - 6.700   7.100   301.344   307.031   355.281   268.688
+2021-10-22 17:28:30,353 - root - INFO - Init plotting
+2021-10-22 17:28:31,441 - root - INFO - Enter acquisition loop
+2021-10-22 17:28:31,443 - root - INFO - Time elapsed: 1.5735626220703125e-05
+2021-10-22 17:28:31,445 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:32,392 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:32,394 - root - INFO - 6.700   7.100   302.188   308.688   341.844   251.562    valori misurati
+2021-10-22 17:28:32,397 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:32,399 - root - INFO - 6.700   7.100   -22.104   238.839   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:32,401 - root - INFO - 6.700   7.100   302.188   308.688   341.844   251.562    valori misurati
+2021-10-22 17:28:32,404 - root - INFO - 6.700   7.100   -41.556   273.471   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:37,623 - root - INFO - Time elapsed: 6.17912220954895
+2021-10-22 17:28:37,624 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:38,416 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:38,417 - root - INFO - 6.700   7.300   301.344   306.000   345.312   253.906    valori misurati
+2021-10-22 17:28:38,420 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:38,421 - root - INFO - 6.700   7.300   -2.552   266.555   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:38,423 - root - INFO - 6.700   7.300   301.344   306.000   345.312   253.906    valori misurati
+2021-10-22 17:28:38,426 - root - INFO - 6.700   7.300   -4.797   305.206   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:41,368 - root - INFO - Time elapsed: 9.924237966537476
+2021-10-22 17:28:41,369 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:42,411 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:42,413 - root - INFO - 6.700   7.300   300.219   305.531   354.125   270.188    valori misurati
+2021-10-22 17:28:42,417 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:42,419 - root - INFO - 6.700   7.300   -3.627   398.438   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:42,421 - root - INFO - 6.700   7.300   300.219   305.531   354.125   270.188    valori misurati
+2021-10-22 17:28:42,425 - root - INFO - 6.700   7.300   -6.818   456.211   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:45,288 - root - INFO - Time elapsed: 13.844139337539673
+2021-10-22 17:28:45,289 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:45,882 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:45,883 - root - INFO - 6.800   7.400   300.125   305.219   358.750   273.969    valori misurati
+2021-10-22 17:28:45,886 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:45,888 - root - INFO - 6.800   7.400   -1.333   439.298   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:45,889 - root - INFO - 6.800   7.400   300.125   305.219   358.750   273.969    valori misurati
+2021-10-22 17:28:45,893 - root - INFO - 6.800   7.400   -2.506   502.996   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:48,893 - root - INFO - Time elapsed: 17.449981212615967
+2021-10-22 17:28:48,895 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:49,888 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:49,890 - root - INFO - 7.000   7.600   300.938   312.781   350.688   260.625    valori misurati
+2021-10-22 17:28:49,895 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:49,898 - root - INFO - 7.000   7.600   -63.518   327.877   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:49,901 - root - INFO - 7.000   7.600   300.938   312.781   350.688   260.625    valori misurati
+2021-10-22 17:28:49,905 - root - INFO - 7.000   7.600   -119.413   375.419   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:52,800 - root - INFO - Time elapsed: 21.356812000274658
+2021-10-22 17:28:52,802 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:53,894 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:53,896 - root - INFO - 7.100   7.700   300.719   303.812   355.156   267.938    valori misurati
+2021-10-22 17:28:53,901 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:53,903 - root - INFO - 7.100   7.700   13.647   389.137   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:53,905 - root - INFO - 7.100   7.700   300.719   303.812   355.156   267.938    valori misurati
+2021-10-22 17:28:53,915 - root - INFO - 7.100   7.700   25.656   445.562   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:56,702 - root - INFO - Time elapsed: 25.258392572402954
+2021-10-22 17:28:56,703 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:28:57,433 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:28:57,435 - root - INFO - 7.100   7.700   299.938   307.750   356.719   266.938    valori misurati
+2021-10-22 17:28:57,438 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:28:57,439 - root - INFO - 7.100   7.700   -24.255   389.385   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:28:57,441 - root - INFO - 7.100   7.700   299.938   307.750   356.719   266.938    valori misurati
+2021-10-22 17:28:57,444 - root - INFO - 7.100   7.700   -45.599   445.846   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:00,291 - root - INFO - Time elapsed: 28.84765648841858
+2021-10-22 17:29:00,292 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:29:00,890 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:29:00,892 - root - INFO - 7.200   7.800   300.781   304.094   320.812   178.938    valori misurati
+2021-10-22 17:29:00,897 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:29:00,899 - root - INFO - 7.200   7.800   11.482   -276.910   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:00,901 - root - INFO - 7.200   7.800   300.781   304.094   320.812   178.938    valori misurati
+2021-10-22 17:29:00,906 - root - INFO - 7.200   7.800   21.587   -317.062   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:04,068 - root - INFO - Time elapsed: 32.62483286857605
+2021-10-22 17:29:04,070 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:29:04,915 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:29:04,917 - root - INFO - 7.300   7.900   300.562   304.312   358.625   276.000    valori misurati
+2021-10-22 17:29:04,921 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:29:04,923 - root - INFO - 7.300   7.900   8.572   450.893   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:04,925 - root - INFO - 7.300   7.900   300.562   304.312   358.625   276.000    valori misurati
+2021-10-22 17:29:04,930 - root - INFO - 7.300   7.900   16.116   516.272   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:07,940 - root - INFO - Time elapsed: 36.49651503562927
+2021-10-22 17:29:07,942 - root - INFO - Calling mavlink_data.c to get telemetry data
+2021-10-22 17:29:09,393 - root - INFO - pm25     pm10     WE_NO2    AE_NO2      WE_CO     AE_CO
+2021-10-22 17:29:09,394 - root - INFO - 7.300   8.000   300.062   310.562   355.969   258.875    valori misurati
+2021-10-22 17:29:09,398 - root - INFO - pm25     pm10     NO2      CO       NO   VOCs
+2021-10-22 17:29:09,400 - root - INFO - 7.300   8.000   -48.194   338.418   0.000   0.000    valori grafico  (ppb)  (pm in ug/m^3 e VOCs in mV)
+2021-10-22 17:29:09,402 - root - INFO - 7.300   8.000   300.062   310.562   355.969   258.875    valori misurati
+2021-10-22 17:29:09,405 - root - INFO - 7.300   8.000   -90.604   387.488   0.000   0.000    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)

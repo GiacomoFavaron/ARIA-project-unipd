@@ -13,30 +13,22 @@ from SDS011 import SDS011
 # Utility function to write headers of the output files
 def write_file_headers():
     # print raw files headers
-    # txt file
-    txtraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.txt','w')
-    txtraw.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'))
-    txtraw.close()
     # csv file
     csvraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.csv','w', newline = '')
     csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csvraw_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora'])
+    csvraw_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'WE_NO2  [mV] ', 'AE_NO2  [mV] ', 'WE_CO  [mV] ', 'AE_CO [mV]', 'data', 'ora', 'unix time'])
     csvraw.close()
     
     # print processed files headers
-    # txt file
-    txtProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.txt','w')
-    txtProc.write('%r %r %r %r %r %r %r %r %r \n' % ('time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'))
-    txtProc.close()
     # csv file
     csvProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.csv','w', newline = '')
     csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora'])
+    csvProc_writer.writerow(['time_elapsed', 'pm25 [ug]/m3', 'pm10 [ug]/m3', 'NO2  [ug/m3] ', 'CO  [ug/m3] ', '/', '/', 'data', 'ora', 'unix time'])
     csvProc.close()
 
 if __name__ == '__main__':
 
-    dataname = time.strftime('%d_%m_%Y_%H_%M_%S') # current date and time to name the files
+    dataname = time.strftime('%Y_%m_%d_%H_%M_%S') # current date and time to name the files
     
     # initialize logger both to file and stdout
     logname = 'logs/logfile' + dataname + '.log'
@@ -116,7 +108,10 @@ if __name__ == '__main__':
     
     while True:
         
-        time_elapsed = time.time() - start_time
+        unix_time = time.time()
+        time_elapsed = unix_time - start_time
+        curr_date = time.strftime('%d/%m/%Y')
+        curr_time = time.strftime('%H:%M:%S')
 
         logging.info("Time elapsed: " + str(time_elapsed))
 
@@ -141,15 +136,10 @@ if __name__ == '__main__':
         
         logging.info("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gas[0], gas[1], gas[2], gas[3]) + "    valori misurati")
 
-        # Write raw data to txt
-        txtraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.txt','a')
-        txtraw.write('%r %r %r %r %r %r %r %r %r \n' % (time_elapsed, pm25, pm10, gas[0], gas[1], gas[2], gas[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')))
-        txtraw.close()
-
         # Write raw data to csv
         csvraw = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredrone' + dataname + '.csv','a', newline = '')
         csvraw_writer = csv.writer(csvraw, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csvraw_writer.writerow([time_elapsed, pm25, pm10, gas[0], gas[1], gas[2], gas[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')])
+        csvraw_writer.writerow([time_elapsed, pm25, pm10, gas[0], gas[1], gas[2], gas[3], curr_date, curr_time, unix_time])
         csvraw.close()
 
         # Here convert raw ADC data to eng. values
@@ -171,16 +161,10 @@ if __name__ == '__main__':
         gasmicro[2]= gaspic[2] * 1.45 #NO (== 0)
         gasmicro[3]= gaspic[3] #VOCs (== 0)
 
-        # Write processed data to txt
-        logging.info("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gas[0], gas[1], gas[2], gas[3]) + "    valori misurati")
-        txtProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.txt','a')
-        txtProc.write('%r %r %r %r %r %r %r %r %r \n' % (time_elapsed, pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')))
-        txtProc.close()
-
         # Write processed data to csv
         csvProc = open('/home/pi/Desktop/ARIA/ARIA-project-unipd/acquisitions/misuredroneProc' + dataname + '.csv','a', newline = '')
         csvProc_writer = csv.writer(csvProc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csvProc_writer.writerow([time_elapsed, pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3], time.strftime('%d/%m/%Y'), time.strftime('%H:%M:%S')])
+        csvProc_writer.writerow([time_elapsed, pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3], curr_date, curr_time, unix_time])
         csvProc.close()
 
         logging.info("%5.3f   %5.3f   %5.3f   %5.3f   %5.3f   %5.3f" % (pm25, pm10, gasmicro[0], gasmicro[1], gasmicro[2], gasmicro[3]) + "    valori grafico  (migrogrammi/m^3)  (pm in ug/m^3 e VOCs in mV)")  

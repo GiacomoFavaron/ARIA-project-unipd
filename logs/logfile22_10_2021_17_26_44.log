@@ -1,0 +1,8 @@
+2021-10-22 17:26:44,927 - root - INFO - ARIA data acquisition
+2021-10-22 17:26:44,928 - root - INFO - Serial numbers:
+2021-10-22 17:26:44,929 - root - INFO - NO2: 212890332
+2021-10-22 17:26:44,930 - root - INFO - CO: 132420228
+2021-10-22 17:26:44,931 - root - INFO - Sensors init
+2021-10-22 17:26:45,054 - root - INFO - Read single sample
+2021-10-22 17:26:45,238 - root - INFO - 8.100   8.800   301.750   306.594   357.031   274.031
+2021-10-22 17:26:45,239 - root - INFO - Init plotting

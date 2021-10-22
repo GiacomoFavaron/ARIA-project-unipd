@@ -1,0 +1,6 @@
+2021-10-22 17:45:24,211 - root - INFO - ARIA data acquisition
+2021-10-22 17:45:24,213 - root - INFO - Serial numbers:
+2021-10-22 17:45:24,214 - root - INFO - NO2: 212890332
+2021-10-22 17:45:24,221 - root - INFO - CO: 132420228
+2021-10-22 17:45:24,226 - root - INFO - Sensors init
+2021-10-22 17:45:24,228 - root - ERROR - Can't access pm sensor through USB, check the connection and retry!
